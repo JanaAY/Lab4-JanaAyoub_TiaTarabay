@@ -1,0 +1,23 @@
+{
+    "students": [],
+    "instructors": [
+        {
+            "name": "Dr. Khraiche",
+            "age": 40,
+            "email": "mkhraiche@aub.edu.lb",
+            "type": "Instructor",
+            "instructor_id": "939238298",
+            "assigned_courses": [
+                "BMEN610"
+            ]
+        }
+    ],
+    "courses": [
+        {
+            "course_id": "BMEN610",
+            "course_name": "Neural Interfaces",
+            "instructor": "Dr. Khraiche",
+            "enrolled_students": []
+        }
+    ]
+}
