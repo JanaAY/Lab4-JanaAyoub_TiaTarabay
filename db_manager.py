@@ -183,6 +183,30 @@ def list_course_roster(db_path: str, cid: str) -> Iterator[Tuple[str, str]]:
 # -----------------------------------------------------------
 # Mutations: Students
 # -----------------------------------------------------------
+def add_student(db_path: str, sid: str, name: str, age: int, email: str) -> None:
+    """Insert a new student row.
+
+    :param db_path: Database path.
+    :type db_path: str
+    :param sid: Student ID to insert.
+    :type sid: str
+    :param name: Student name.
+    :type name: str
+    :param age: Student age.
+    :type age: int
+    :param email: Student email.
+    :type email: str
+    :return: None
+    :rtype: None
+    :raises sqlite3.IntegrityError: If ``sid`` already exists.
+    """
+    with sqlite3.connect(db_path) as conn:
+        conn.execute("PRAGMA foreign_keys = ON;")
+        conn.execute(
+            "INSERT INTO students (sid, name, age, email) VALUES (?, ?, ?, ?)",
+            (sid, name, age, email),
+        )
+        # with-block commits automatically
 
 def update_student(db_path: str, sid: str, name: str, age: int, email: str) -> None:
     """Update a student's fields.
@@ -253,6 +277,30 @@ def register_student(db_path: str, sid: str, cid: str) -> None:
 # -----------------------------------------------------------
 # Mutations: Instructors
 # -----------------------------------------------------------
+def add_instructor(db_path: str, iid: str, name: str, age: int, email: str) -> None:
+    """Insert a new instructor row.
+
+    :param db_path: Database path.
+    :type db_path: str
+    :param iid: Instructor ID to insert.
+    :type iid: str
+    :param name: Instructor name.
+    :type name: str
+    :param age: Instructor age.
+    :type age: int
+    :param email: Instructor email.
+    :type email: str
+    :return: None
+    :rtype: None
+    :raises sqlite3.IntegrityError: If ``iid`` already exists.
+    """
+    with sqlite3.connect(db_path) as conn:
+        conn.execute("PRAGMA foreign_keys = ON;")
+        conn.execute(
+            "INSERT INTO instructors (iid, name, age, email) VALUES (?, ?, ?, ?)",
+            (iid, name, age, email),
+        )
+        # with-block commits automatically
 
 def update_instructor(db_path: str, iid: str, name: str, age: int, email: str) -> None:
     """Update an instructor's fields.
@@ -325,6 +373,15 @@ def set_course_instructor(db_path: str, cid: str, iid: Optional[str]) -> None:
 # -----------------------------------------------------------
 # Mutations: Courses
 # -----------------------------------------------------------
+def add_course(db_path: str, cid: str, name: str, iid: Optional[str] = None) -> None:
+    """Insert a new course row."""
+    with sqlite3.connect(db_path) as conn:
+        conn.execute("PRAGMA foreign_keys = ON;")  # ensure FK rules are enforced
+        conn.execute(
+            "INSERT INTO courses (cid, name, iid) VALUES (?, ?, ?)",
+            (cid, name, iid),
+        )
+        # with-block commits automatically on success
 
 def update_course_name(db_path: str, cid: str, new_name: str) -> None:
     """Rename a course.

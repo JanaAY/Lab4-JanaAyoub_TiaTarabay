@@ -66,13 +66,19 @@ def build_course_tab(notebook, courses: list, refresh_all_views, find_course_by_
         if find_course_by_id(cid):
             messagebox.showerror("Error", "Course ID already exists.")
             return
-        c = Course(cid, cname)
-        courses.append(c)
-        cid_e.delete(0, tk.END)
-        cname_e.delete(0, tk.END)
+        try:
+            # 1) Write to DB first (commits inside db.add_course)
+            db.add_course(DB_PATH, cid, cname)
 
-        db.add_course(DB_PATH, cid, cname)
-        refresh_all_views()
+            # 2) Only if DB insert succeeds, update memory/UI
+            courses.append(Course(cid, cname))
+            cid_e.delete(0, tk.END)
+            cname_e.delete(0, tk.END)
+            refresh_all_views()
+
+        except Exception as e:
+            messagebox.showerror("DB Error", f"Could not add course:\n{e}")
+
 
     ttk.Button(frame, text="Add Course", command=add_course).grid(row=2, column=0, columnspan=2, pady=8)
 

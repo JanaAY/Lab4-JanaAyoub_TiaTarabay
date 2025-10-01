@@ -94,15 +94,23 @@ the database.
             messagebox.showerror("Error", "Instructor ID already exists.")
             return
 
-        inst = Instructor(name, int(age), email, iid)
-        instructors.append(inst)
-        name_e.delete(0, tk.END)
-        age_e.delete(0, tk.END)
-        email_e.delete(0, tk.END)
-        iid_e.delete(0, tk.END)
+        try:
+            # 1) Persist to DB first
+            db.add_instructor(DB_PATH, iid, name, int(age), email)
 
-        db.add_instructor(DB_PATH, iid, name, age, email)
-        refresh_all_views()
+            # 2) Only if DB write succeeds, update in-memory + UI
+            instructors.append(Instructor(name, int(age), email, iid))
+
+            name_e.delete(0, tk.END)
+            age_e.delete(0, tk.END)
+            email_e.delete(0, tk.END)
+            iid_e.delete(0, tk.END)
+
+            refresh_all_views()
+
+        except Exception as e:
+            messagebox.showerror("DB Error", f"Could not add instructor:\n{e}")
+
 
     ttk.Button(frame, text="Add Instructor", command=add_instructor).grid(
         row=4, column=0, columnspan=2, pady=8

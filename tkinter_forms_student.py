@@ -95,15 +95,23 @@ def build_student_tab(notebook, students: list, find_student_by_id, refresh_all_
             messagebox.showerror("Error", "Student ID already exists.")
             return
 
-        s = Student(name, int(age), email, sid)
-        students.append(s)
-        name_e.delete(0, tk.END)
-        age_e.delete(0, tk.END)
-        email_e.delete(0, tk.END)
-        sid_e.delete(0, tk.END)
+        try:
+            # Write to DB first (commits inside db.add_student)
+            db.add_student(DB_PATH, sid, name, int(age), email)
 
-        db.add_student(DB_PATH, sid, name, age, email)
-        refresh_all_views()
+            # If DB insert succeeds, update in-memory + UI
+            students.append(Student(name, int(age), email, sid))
+
+            name_e.delete(0, tk.END)
+            age_e.delete(0, tk.END)
+            email_e.delete(0, tk.END)
+            sid_e.delete(0, tk.END)
+
+            refresh_all_views()
+
+        except Exception as e:
+            messagebox.showerror("DB Error", f"Could not add student:\n{e}")
+
 
     ttk.Button(frame, text="Add Student", command=add_student).grid(
         row=4, column=0, columnspan=2, pady=8
