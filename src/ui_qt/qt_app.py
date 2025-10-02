@@ -28,13 +28,13 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QIntValidator
 
-from models.person import Person
-from models.student import Student
-from models.instructor import Instructor
-from models.course import Course
-from models.data_manager import DataManager
-from models import db
-from models.db_sync import load_all
+
+from src.core.models.person import Person
+from src.core.models.student import Student
+from src.core.models.instructor import Instructor
+from src.core.models.course import Course
+from src.core.data_manager import DataManager
+from src.core import db_manager as db
 
 #: Default JSON path for save/load operations
 JSON_PATH = "school.json"
@@ -170,7 +170,7 @@ class MainWindow(QMainWindow):
 
         :raises ValueError: If ID missing, age negative, or email invalid.
         :side effects:
-            - Calls :func:`models.db.add_student`
+            - Calls :func:`models.db.add_student_global`
             - Refreshes UI via :meth:`reload_all`
             - Clears form via :meth:`clear_student_form`
         """
@@ -183,7 +183,7 @@ class MainWindow(QMainWindow):
             if a < 0: raise ValueError("Age must be non-negative")
             if not sid: raise ValueError("Student ID is required")
             if not Person._is_valid_email(email): raise ValueError("Invalid email")
-            db.add_student(sid, name, a, email)
+            db.add_student_global(sid, name, a, email)
             self.reload_all()
             self.clear_student_form()
         except Exception as e:
@@ -195,7 +195,7 @@ class MainWindow(QMainWindow):
 
         :raises ValueError: If ID missing, age negative, or email invalid.
         :side effects:
-            - Calls :func:`models.db.update_student`
+            - Calls :func:`models.db.update_student_global`
             - Refreshes UI via :meth:`reload_all`
             - Clears form via :meth:`clear_student_form`
         """
@@ -208,7 +208,7 @@ class MainWindow(QMainWindow):
             if a < 0: raise ValueError("Age must be non-negative")
             if not sid: raise ValueError("Student ID is required")
             if not Person._is_valid_email(email): raise ValueError("Invalid email")
-            db.update_student(sid, name, a, email)
+            db.update_student_global(sid, name, a, email)
             self.reload_all()
             self.clear_student_form()
         except Exception as e:
@@ -289,7 +289,7 @@ class MainWindow(QMainWindow):
 
         :raises ValueError: If ID missing, age negative, or email invalid.
         :side effects:
-            - Calls :func:`models.db.add_instructor`
+            - Calls :func:`models.db.add_instructor_global`
             - Refreshes UI via :meth:`reload_all`
             - Clears form via :meth:`clear_instructor_form`
         """
@@ -302,7 +302,7 @@ class MainWindow(QMainWindow):
             if a < 0: raise ValueError("Age must be non-negative")
             if not iid: raise ValueError("Instructor ID is required")
             if not Person._is_valid_email(email): raise ValueError("Invalid email")
-            db.add_instructor(iid, name, a, email)
+            db.add_instructor_global(iid, name, a, email)
             self.reload_all()
             self.clear_instructor_form()
         except Exception as e:
@@ -314,7 +314,7 @@ class MainWindow(QMainWindow):
 
         :raises ValueError: If ID missing, age negative, or email invalid.
         :side effects:
-            - Calls :func:`models.db.update_instructor`
+            - Calls :func:`models.db.update_instructor_global`
             - Refreshes UI via :meth:`reload_all`
             - Clears form via :meth:`clear_instructor_form`
         """
@@ -327,7 +327,7 @@ class MainWindow(QMainWindow):
             if a < 0: raise ValueError("Age must be non-negative")
             if not iid: raise ValueError("Instructor ID is required")
             if not Person._is_valid_email(email): raise ValueError("Invalid email")
-            db.update_instructor(iid, name, a, email)
+            db.update_instructor_global(iid, name, a, email)
             self.reload_all()
             self.clear_instructor_form()
         except Exception as e:
@@ -429,7 +429,7 @@ class MainWindow(QMainWindow):
 
         :raises RuntimeError: Surfaces DB-layer errors (e.g., duplicates).
         :side effects:
-            - Calls :func:`models.db.add_course`
+            - Calls :func:`models.db.add_course_global`
             - Refreshes UI via :meth:`reload_all`
             - Clears form via :meth:`clear_course_form`
         """
@@ -439,7 +439,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Add course", "Need course id and name")
             return
         try:
-            db.add_course(cid, cname, None)
+            db.add_course_global(cid, cname, None)
             self.reload_all()
             self.clear_course_form()
         except Exception as e:
@@ -451,7 +451,7 @@ class MainWindow(QMainWindow):
 
         :raises RuntimeError: Surfaces DB-layer errors.
         :side effects:
-            - Calls :func:`models.db.assign_instructor`
+            - Calls :func:`models.db.add_instructor_global`
             - Refreshes UI via :meth:`reload_all`
         """
         cid = self.pick_course_assign.currentText().strip()
@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Assign", "Pick course and instructor")
             return
         try:
-            db.assign_instructor(cid, iid)
+            db.set_course_instructor_global(cid, iid)
             self.reload_all()
         except Exception as e:
             QMessageBox.critical(self, "Assign failed", str(e))
@@ -471,7 +471,7 @@ class MainWindow(QMainWindow):
 
         :raises RuntimeError: Surfaces DB-layer errors.
         :side effects:
-            - Calls :func:`models.db.register_student`
+            - Calls :func:`models.db.register_student_global`
             - Refreshes UI via :meth:`reload_all`
         """
         cid = self.pick_course_reg.currentText().strip()
@@ -480,7 +480,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "Register", "Pick course and student")
             return
         try:
-            db.register_student(sid, cid)
+            db.register_student_global(sid, cid)
             self.reload_all()
         except Exception as e:
             QMessageBox.critical(self, "Register failed", str(e))
@@ -522,9 +522,9 @@ class MainWindow(QMainWindow):
         if QMessageBox.question(self, "Confirm", f"Delete this {kind} ({key})?") != QMessageBox.Yes:
             return
         try:
-            if kind == "student": db.delete_student(key)
-            elif kind == "instructor": db.delete_instructor(key)
-            else: db.delete_course(key)
+            if kind == "student": db.delete_student_global(key)
+            elif kind == "instructor": db.delete_instructor_global(key)
+            else: db.delete_course_global(key)
             self.reload_all()
         except Exception as e:
             QMessageBox.critical(self, "Delete failed", str(e))
@@ -538,7 +538,7 @@ class MainWindow(QMainWindow):
             - Calls :meth:`fill_tables` and :meth:`fill_pickers`
         """
         global STUDENTS, INSTRUCTORS, COURSES
-        STUDENTS, INSTRUCTORS, COURSES = load_all()
+        STUDENTS, INSTRUCTORS, COURSES = db.load_all()
         self.fill_tables()
         self.fill_pickers()
 
@@ -596,20 +596,27 @@ class MainWindow(QMainWindow):
     # ----------------------------
     def save_json(self):
         """
-        Save the current in-memory data to a JSON file at :data:`JSON_PATH`.
+        Save the current in-memory data to a JSON file chosen by the user.
 
-        :side effects: Calls :func:`models.data_manager.DataManager.save_to_file`
-            and shows a message box on success/failure.
+        :side effects:
+            - Calls :func:`models.data_manager.DataManager.save_to_file`
+            - Shows a message box on success/failure.
         """
+        fname, _ = QFileDialog.getSaveFileName(
+            self, "Save JSON", "school.json", "JSON Files (*.json)"
+        )
+        if not fname:
+            return
         try:
-            DataManager.save_to_file(JSON_PATH, STUDENTS, INSTRUCTORS, COURSES)
-            QMessageBox.information(self, "Save", "Saved.")
+            DataManager.save_to_file(fname, STUDENTS, INSTRUCTORS, COURSES)
+            QMessageBox.information(self, "Save", f"Data saved to:\n{fname}")
         except Exception as e:
             QMessageBox.critical(self, "Save failed", str(e))
 
+
     def load_json(self):
         """
-        Load a JSON snapshot from :data:`JSON_PATH`, rebuild in-memory objects,
+        Load a JSON snapshot chosen by the user, rebuild in-memory objects,
         overwrite the database accordingly, and refresh the UI.
 
         :side effects:
@@ -617,24 +624,38 @@ class MainWindow(QMainWindow):
             - Calls :meth:`overwrite_db_from_memory`
             - Calls :meth:`reload_all`
         """
+        fname, _ = QFileDialog.getOpenFileName(
+            self, "Load JSON", "", "JSON Files (*.json)"
+        )
+        if not fname:
+            return
         try:
-            data = DataManager.load_from_file(JSON_PATH)
+            data = DataManager.load_from_file(fname)
             self.load_into_memory(data)
             self.overwrite_db_from_memory()
             self.reload_all()
-            QMessageBox.information(self, "Load", "Loaded.")
+            QMessageBox.information(self, "Load", f"Data loaded from:\n{fname}")
         except Exception as e:
             QMessageBox.critical(self, "Load failed", str(e))
 
+
     def backup_db(self):
         """
-        Create a database backup using :func:`models.db.backup_db` and display the path.
+        Create a database backup to a user-chosen path using
+        :func:`models.db.backup_db_global` and display the destination.
         """
+        fname, _ = QFileDialog.getSaveFileName(
+            self, "Save DB Backup", "school-backup.db", "SQLite DB (*.db)"
+        )
+        if not fname:
+            return
         try:
-            path = db.backup_db()
-            QMessageBox.information(self, "Backup", f"Backed up to:\n{path}")
+            # Uses the global DB_PATH inside db_manager
+            path = db.backup_db_global(dest_path=fname)
+            QMessageBox.information(self, "Backup", f"Database copied to:\n{path}")
         except Exception as e:
             QMessageBox.critical(self, "Backup failed", str(e))
+
 
     # ----------------------------
     # JSON → Memory → DB helpers
@@ -687,21 +708,21 @@ class MainWindow(QMainWindow):
 
         :side effects: Mutates the DB and repopulates rows consistently with memory.
         """
-        from models.db import get_conn
+        from src.core.db_manager import get_conn
         with get_conn() as c:
             c.execute("DELETE FROM registrations;")
             c.execute("DELETE FROM courses;")
             c.execute("DELETE FROM students;")
             c.execute("DELETE FROM instructors;")
         for ins in INSTRUCTORS:
-            db.add_instructor(ins.instructor_id, ins.name, int(ins.age), ins._email)
+            db.add_instructor_global(ins.instructor_id, ins.name, int(ins.age), ins._email)
         for crs in COURSES:
             iid = crs.instructor.instructor_id if crs.instructor else None
-            db.add_course(crs.course_id, crs.course_name, iid)
+            db.add_course_global(crs.course_id, crs.course_name, iid)
         for st in STUDENTS:
-            db.add_student(st.student_id, st.name, int(st.age), st._email)
+            db.add_student_global(st.student_id, st.name, int(st.age), st._email)
             for c in st.registered_courses:
-                db.register_student(st.student_id, c.course_id)
+                db.register_student_global(st.student_id, c.course_id)
 
 
 def main():
@@ -723,3 +744,6 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
+def run():
+    main()

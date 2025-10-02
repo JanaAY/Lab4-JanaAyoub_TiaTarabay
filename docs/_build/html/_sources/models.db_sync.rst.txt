@@ -1,7 +1,0 @@
-models.db\_sync module
-======================
-
-.. automodule:: models.db_sync
-   :members:
-   :show-inheritance:
-   :undoc-members:

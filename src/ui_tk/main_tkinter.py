@@ -25,17 +25,17 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog, filedialog
 import json
 
-from student import Student
-from instructor import Instructor
-from course import Course
+from src.core.models.student import Student
+from src.core.models.instructor import Instructor
+from src.core.models.course import Course
 
-from src.data_manager import DataManager
+from src.core.data_manager import DataManager
 
-from tkinter_forms_student import build_student_tab
-from tkinter_forms_instructor import build_instructor_tab
-from tkinter_forms_course import build_course_tab
+from src.ui_tk.tkinter_forms_student import build_student_tab
+from src.ui_tk.tkinter_forms_instructor import build_instructor_tab
+from src.ui_tk.tkinter_forms_course import build_course_tab
 
-import src.db_manager as db
+import src.core.db_manager as db
 
 DB_PATH = "school.db"
 
@@ -153,12 +153,21 @@ def register_student_to_course():
     if not s or not c:
         messagebox.showerror("Error", "Student or course not found.")
         return
+    if c in s.registered_courses or s in c.enrolled_students:
+        messagebox.showinfo("Already registered",
+                            f"{s.name} is already registered in {c.course_name} (ID: {c.course_id}).")
+        reg_student_cb.set("")
+        reg_course_cb.set("")
+        reg_student_cb.focus_set()
+        return
     db.register_student(DB_PATH, s.student_id, c.course_id)
     if c not in s.registered_courses:
         s.registered_courses.append(c)
     if s not in c.enrolled_students:
         c.enrolled_students.append(s)
     messagebox.showinfo("OK", f"{s.name} registered in {c.course_name} (ID: {c.course_id}).")
+    reg_student_cb.set("")
+    reg_course_cb.set("")
     refresh_all_views()
 
 
@@ -186,12 +195,30 @@ def assign_instructor_to_course():
     if not inst or not c:
         messagebox.showerror("Error", "Instructor or course not found.")
         return
+    # --- Duplicate check ---
+    if c.instructor is inst:
+        messagebox.showinfo("Already assigned",
+                            f"{inst.name} is already assigned to {c.course_name} (ID: {c.course_id}).")
+        asg_instructor_cb.set("")
+        asg_course_cb.set("")
+        asg_instructor_cb.focus_set()
+        return
     c.instructor = inst
     db.set_course_instructor(DB_PATH, c.course_id, inst.instructor_id)
     if c not in inst.assigned_courses:
         inst.assigned_courses.append(c)
-    messagebox.showinfo("OK", f"{inst.name} assigned to {c.course_name}.")
+    messagebox.showinfo("OK", f"{inst.name} assigned to {c.course_name} (ID: {c.course_id}).")
+    # --- Clear comboboxes after success ---
+    asg_instructor_cb.set("")
+    asg_course_cb.set("")
+    # (Optional) focus first field
+    asg_instructor_cb.focus_set()
     refresh_all_views()
+
+def show_all_and_clear_search():
+    """Reset search box and repopulate all views."""
+    search_var.set("")       # clear the entry box
+    refresh_all_views()      # repopulate tables/combos
 
 
 # --- Search & Filter ---
@@ -660,7 +687,7 @@ def build_ui(root: tk.Tk) -> None:
     search_var = tk.StringVar()
     ttk.Entry(records, textvariable=search_var, width=40).grid(row=0, column=1, sticky="w")
     ttk.Button(records, text="Search", command=do_search).grid(row=0, column=2, padx=6)
-    ttk.Button(records, text="Show All", command=refresh_all_views).grid(row=0, column=3)
+    ttk.Button(records, text="Show All", command=show_all_and_clear_search).grid(row=0, column=3)
 
     # Students tree
     ttk.Label(records, text="Students").grid(row=1, column=0, sticky="w", pady=(10, 2))
@@ -815,4 +842,7 @@ def main() -> None:
     root.mainloop()
 
 if __name__ == "__main__":
+    main()
+
+def run():
     main()

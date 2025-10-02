@@ -1,7 +1,0 @@
-models.data\_manager module
-===========================
-
-.. automodule:: models.data_manager
-   :members:
-   :show-inheritance:
-   :undoc-members:

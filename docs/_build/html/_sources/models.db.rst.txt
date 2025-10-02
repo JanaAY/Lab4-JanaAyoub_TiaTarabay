@@ -1,7 +1,0 @@
-models.db module
-================
-
-.. automodule:: models.db
-   :members:
-   :show-inheritance:
-   :undoc-members:

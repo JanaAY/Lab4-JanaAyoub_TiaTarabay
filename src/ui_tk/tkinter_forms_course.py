@@ -10,9 +10,9 @@ Docstrings are written in Sphinx/Napoleon style.
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-from course import Course
+from src.core.models.course import Course
 
-import src.db_manager as db
+import src.core.db_manager as db
 
 DB_PATH = "school.db"
 

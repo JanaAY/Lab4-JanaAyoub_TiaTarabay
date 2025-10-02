@@ -1,66 +1,57 @@
 # -- Path setup --------------------------------------------------------------
-import os
 import sys
 from pathlib import Path
 
-# docs/ -> project root
-DOCS_DIR = Path(__file__).parent.resolve()
-PROJECT_ROOT = DOCS_DIR.parent.resolve()
-SRC_DIR = PROJECT_ROOT / "src"
+HERE = Path(__file__).resolve()      # .../docs/conf.py
+REPO_ROOT = HERE.parents[1]          # repo root that contains 'src'
+sys.path.insert(0, str(REPO_ROOT))   # so `import src...` works
 
-# Add project root (imports like `import models...`) and src/ (if present)
-sys.path.insert(0, str(PROJECT_ROOT))
-if SRC_DIR.exists():
-    sys.path.insert(0, str(SRC_DIR))
+# Optional: headless Qt for imports during build
+import os
+os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
-# -- Project information -----------------------------------------------------
-project = "School Management (PyQt5)"
-author = "Tia Tarabay & Jana Ayoub"
+
+# --- Project info ---
+project = "PyQt5/Tkinter"
+author = "Jana Ayoub Tia Tarabay"
 release = "1.0.0"
-copyright = "2025, " + author
-html_title = "School Management (PyQt5) — API"
 
-# -- General configuration ---------------------------------------------------
+# --- Extensions ---
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
+    "sphinx.ext.autosummary",
 ]
 
-# Keep pages non-empty and readable
 autosummary_generate = True
-add_module_names = False
-autodoc_member_order = "bysource"
-autodoc_typehints = "description"
-
 autodoc_default_options = {
     "members": True,
     "undoc-members": True,
-    "inherited-members": True,  # keep from main
+    "inherited-members": True,
     "show-inheritance": True,
 }
+autodoc_member_order = "bysource"
 
-# Mock GUI/heavy deps so the docs build without a GUI runtime
+# If GUI deps cause issues, mock them:
 autodoc_mock_imports = [
     "tkinter",
-    "PyQt5", "PyQt5.QtWidgets", "PyQt5.QtGui", "PyQt5.QtCore",
+    "PyQt5",
+    "PyQt5.QtWidgets",
+    "PyQt5.QtGui",
+    "PyQt5.QtCore",
     "sip",
-    "models.db", "models.data_manager", "models.db_sync",
 ]
+
+add_module_names = False
+autodoc_typehints = "description"
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = True
 
 templates_path = ["_templates"]
-exclude_patterns = [
-    "_build",
-    "Thumbs.db",
-    ".DS_Store",
-    "venv",
-    ".venv",
-    "**/qt_forms_*.py",
-    "**/main_pyqt5.py",
-]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-# -- HTML --------------------------------------------------------------------
+# Theme
 html_theme = "sphinx_rtd_theme"
-html_theme_options = {"collapse_navigation": False, "sticky_navigation": True}
 html_static_path = ["_static"]

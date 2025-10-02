@@ -11,9 +11,9 @@ Docstrings follow Sphinx/Napoleon style.
 import tkinter as tk
 from tkinter import ttk, messagebox
 import re
-from student import Student
+from src.core.models.student import Student
 
-import src.db_manager as db
+import src.core.db_manager as db
 
 DB_PATH = "school.db"
 

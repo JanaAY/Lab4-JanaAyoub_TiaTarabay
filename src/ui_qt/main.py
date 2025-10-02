@@ -9,10 +9,10 @@ Run directly to see console output and JSON save/load behavior.
 """
 
 from typing import Optional
-from core.models.student import Student
-from core.models.instructor import Instructor
-from core.models.course import Course
-from core.data_manager import DataManager
+from src.core.models.student import Student
+from src.core.models.instructor import Instructor
+from src.core.models.course import Course
+from src.core.data_manager import DataManager
 
 
 def show_course_info(course: Course) -> None:
@@ -70,3 +70,4 @@ if __name__ == "__main__":
 
     # Print a human-readable course summary
     show_course_info(dsp)
+
