@@ -13,7 +13,7 @@ from tkinter import ttk, messagebox
 import re
 from student import Student
 
-import db_manager as db
+import src.db_manager as db
 
 DB_PATH = "school.db"
 

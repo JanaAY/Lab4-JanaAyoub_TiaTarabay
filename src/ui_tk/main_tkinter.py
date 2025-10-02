@@ -29,13 +29,13 @@ from student import Student
 from instructor import Instructor
 from course import Course
 
-from data_manager import DataManager
+from src.data_manager import DataManager
 
 from tkinter_forms_student import build_student_tab
 from tkinter_forms_instructor import build_instructor_tab
 from tkinter_forms_course import build_course_tab
 
-import db_manager as db
+import src.db_manager as db
 
 DB_PATH = "school.db"
 

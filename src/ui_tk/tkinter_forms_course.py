@@ -12,7 +12,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from course import Course
 
-import db_manager as db
+import src.db_manager as db
 
 DB_PATH = "school.db"
 
