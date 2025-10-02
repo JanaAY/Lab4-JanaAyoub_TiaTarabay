@@ -1,8 +1,24 @@
-__pycache__/
-*.pyc
+# Virtual environments
 .venv/
 venv/
+
+# Python cache
+_pycache_/
+*.pyc
+*.pyo
+*.pyd
+
+# Build artifacts
 build/
 dist/
+
+# Databases
+*.db
+*.sqlite3
+
+# IDE configs
 .idea/
 .vscode/
+
+# Sphinx build output
+docs/_build/

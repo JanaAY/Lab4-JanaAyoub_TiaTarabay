@@ -1,15 +1,26 @@
-import os, sys
-sys.path.insert(0, os.path.abspath('../src'))  # your code is under src/
+# -- Path setup --------------------------------------------------------------
+import os
+import sys
+from pathlib import Path
 
+# docs/ -> project root
+DOCS_DIR = Path(__file__).parent.resolve()
+PROJECT_ROOT = DOCS_DIR.parent.resolve()
+SRC_DIR = PROJECT_ROOT / "src"
+
+# Add project root (imports like `import models...`) and src/ (if present)
+sys.path.insert(0, str(PROJECT_ROOT))
+if SRC_DIR.exists():
+    sys.path.insert(0, str(SRC_DIR))
+
+# -- Project information -----------------------------------------------------
 project = "School Management (PyQt5)"
-author = "Tia Tarabay"
+author = "Tia Tarabay & Jana Ayoub"
 release = "1.0.0"
-
-# Sphinx shows THIS in the footer. Include your name and year.
-copyright = "2025, Tia Tarabay"
-
-# optional: control the window/tab title
+copyright = "2025, " + author
 html_title = "School Management (PyQt5) — API"
+
+# -- General configuration ---------------------------------------------------
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -17,21 +28,39 @@ extensions = [
     "sphinx.ext.napoleon",
 ]
 
+# Keep pages non-empty and readable
 autosummary_generate = True
-autodoc_member_order = "bysource"
 add_module_names = False
+autodoc_member_order = "bysource"
+autodoc_typehints = "description"
+
 autodoc_default_options = {
     "members": True,
     "undoc-members": True,
+    "inherited-members": True,  # keep from main
     "show-inheritance": True,
 }
 
-# mock heavy deps so qt_app imports during docs build
+# Mock GUI/heavy deps so the docs build without a GUI runtime
 autodoc_mock_imports = [
+    "tkinter",
     "PyQt5", "PyQt5.QtWidgets", "PyQt5.QtGui", "PyQt5.QtCore",
+    "sip",
     "models.db", "models.data_manager", "models.db_sync",
 ]
 
+templates_path = ["_templates"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "venv",
+    ".venv",
+    "**/qt_forms_*.py",
+    "**/main_pyqt5.py",
+]
+
+# -- HTML --------------------------------------------------------------------
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {"collapse_navigation": False, "sticky_navigation": True}
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "venv", ".venv"]
+html_static_path = ["_static"]
