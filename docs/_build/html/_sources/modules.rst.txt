@@ -1,5 +1,5 @@
-School Management — Modules
-===========================
+src
+===
 
 .. toctree::
    :maxdepth: 2

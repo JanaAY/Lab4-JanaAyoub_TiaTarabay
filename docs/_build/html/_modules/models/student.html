@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>models.student &mdash; School Management (PyQt5) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            School Management (PyQt5)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../main.html">main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../main.html#main.show_course_info"><code class="docutils literal notranslate"><span class="pre">show_course_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../models.html">models package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../models.course.html">models.course module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.data_manager.html">models.data_manager module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.db.html">models.db module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.db_sync.html">models.db_sync module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.instructor.html">models.instructor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.person.html">models.person module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../models.student.html">models.student module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../models.html#module-models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../qt_app.html">qt_app module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.JSON_PATH"><code class="docutils literal notranslate"><span class="pre">JSON_PATH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.STUDENTS"><code class="docutils literal notranslate"><span class="pre">STUDENTS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.INSTRUCTORS"><code class="docutils literal notranslate"><span class="pre">INSTRUCTORS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.COURSES"><code class="docutils literal notranslate"><span class="pre">COURSES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.text"><code class="docutils literal notranslate"><span class="pre">text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.make_students_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_students_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.clear_student_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_student_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.add_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.update_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.update_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.fill_student_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_student_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.make_instructors_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_instructors_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.clear_instructor_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_instructor_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.add_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.update_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.update_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.fill_instructor_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_instructor_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.make_courses_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_courses_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.clear_course_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_course_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.add_course"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.assign_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.assign_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.register_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.register_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.fill_course_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_course_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.delete_selected"><code class="docutils literal notranslate"><span class="pre">MainWindow.delete_selected()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.reload_all"><code class="docutils literal notranslate"><span class="pre">MainWindow.reload_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.fill_tables"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_tables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.fill_pickers"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_pickers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.save_json"><code class="docutils literal notranslate"><span class="pre">MainWindow.save_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.load_json"><code class="docutils literal notranslate"><span class="pre">MainWindow.load_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.backup_db"><code class="docutils literal notranslate"><span class="pre">MainWindow.backup_db()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.load_into_memory"><code class="docutils literal notranslate"><span class="pre">MainWindow.load_into_memory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../qt_app.html#qt_app.MainWindow.overwrite_db_from_memory"><code class="docutils literal notranslate"><span class="pre">MainWindow.overwrite_db_from_memory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../qt_app.html#qt_app.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">School Management (PyQt5)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">models.student</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for models.student</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.person</span><span class="w"> </span><span class="kn">import</span> <span class="n">Person</span>
+<span class="c1"># Only for type checkers / IDEs; not executed at runtime (avoids circular import)</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.course</span><span class="w"> </span><span class="kn">import</span> <span class="n">Course</span>
+
+
+<div class="viewcode-block" id="Student">
+<a class="viewcode-back" href="../../models.student.html#models.student.Student">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Student domain entity.</span>
+
+<span class="sd">    Extends :class:`.person.Person` with a unique ``student_id`` and a list of</span>
+<span class="sd">    registered courses. Courses are stored as object references and exported</span>
+<span class="sd">    to JSON as a list of course IDs via :meth:`to_dict`.</span>
+
+<span class="sd">    :ivar student_id: Unique student identifier</span>
+<span class="sd">    :vartype student_id: str</span>
+<span class="sd">    :ivar registered_courses: Courses this student is registered in</span>
+<span class="sd">    :vartype registered_courses: list[Course]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">student_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construct a student.</span>
+
+<span class="sd">        :param name: Full name</span>
+<span class="sd">        :type name: str</span>
+<span class="sd">        :param age: Non-negative age in years</span>
+<span class="sd">        :type age: int</span>
+<span class="sd">        :param email: Contact email address</span>
+<span class="sd">        :type email: str</span>
+<span class="sd">        :param student_id: Unique student identifier</span>
+<span class="sd">        :type student_id: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">student_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">student_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Course&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="Student.register_course">
+<a class="viewcode-back" href="../../models.student.html#models.student.Student.register_course">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">:</span> <span class="s2">&quot;Course&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register the student in a course, if not already registered.</span>
+
+<span class="sd">        :param course: The course to register</span>
+<span class="sd">        :type course: Course</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">course</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">course</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Student.to_dict">
+<a class="viewcode-back" href="../../models.student.html#models.student.Student.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Serialize the student to a JSON-ready dictionary.</span>
+
+<span class="sd">        The resulting dict extends :meth:`.person.Person.to_dict` with:</span>
+<span class="sd">        - ``student_id`` (str)</span>
+<span class="sd">        - ``registered_courses`` (list[str]): the IDs of registered courses</span>
+
+<span class="sd">        :return: JSON-ready mapping for this student</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="n">d</span><span class="p">[</span><span class="s2">&quot;student_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">student_id</span>
+        <span class="n">d</span><span class="p">[</span><span class="s2">&quot;registered_courses&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">course_id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">d</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

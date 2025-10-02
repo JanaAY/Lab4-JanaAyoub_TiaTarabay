@@ -1,54 +1,66 @@
 # -- Path setup --------------------------------------------------------------
-import os, sys
-# conf.py is in docs/, project root is one level up
-sys.path.insert(0, os.path.abspath('..'))
+import os
+import sys
+from pathlib import Path
 
-DOCS_DIR = os.path.dirname(__file__)
-PACKAGE_PARENT = os.path.abspath(os.path.join(DOCS_DIR, '..', '..'))  # one above Lab2_JanaAyoub
-sys.path.insert(0, PACKAGE_PARENT)
+# docs/ -> project root
+DOCS_DIR = Path(__file__).parent.resolve()
+PROJECT_ROOT = DOCS_DIR.parent.resolve()
+SRC_DIR = PROJECT_ROOT / "src"
+
+# Add project root (imports like `import models...`) and src/ (if present)
+sys.path.insert(0, str(PROJECT_ROOT))
+if SRC_DIR.exists():
+    sys.path.insert(0, str(SRC_DIR))
 
 # -- Project information -----------------------------------------------------
-project = 'PyQt5/Tkinter'
-author = 'Jana Ayoub'
-copyright = '2025, Jana Ayoub'
-release = '1.0.0'
+project = "School Management (PyQt5)"
+author = "Tia Tarabay & Jana Ayoub"
+release = "1.0.0"
+copyright = "2025, " + author
+html_title = "School Management (PyQt5) — API"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.autosummary',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.napoleon",
 ]
 
-# Show members (prevents empty pages)
-autodoc_default_options = {
-    'members': True,
-    'undoc-members': True,
-    'inherited-members': True,
-    'show-inheritance': True,
-}
+# Keep pages non-empty and readable
 autosummary_generate = True
-
-# If GUI/deps cause import errors, mock them
-autodoc_mock_imports = ['tkinter', 'PyQt5', 'sip']
-
-# Optional polish
 add_module_names = False
-autodoc_typehints = 'description'
-napoleon_google_docstring = True
-napoleon_numpy_docstring = True
+autodoc_member_order = "bysource"
+autodoc_typehints = "description"
 
-templates_path = ['_templates']
-exclude_patterns = [
-    '_build',
-    'Thumbs.db',
-    '.DS_Store',
-    '**/qt_forms_*.py',
-    '**/main_pyqt5.py',
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "inherited-members": True,  # keep from main
+    "show-inheritance": True,
+}
+
+# Mock GUI/heavy deps so the docs build without a GUI runtime
+autodoc_mock_imports = [
+    "tkinter",
+    "PyQt5", "PyQt5.QtWidgets", "PyQt5.QtGui", "PyQt5.QtCore",
+    "sip",
+    "models.db", "models.data_manager", "models.db_sync",
 ]
 
+templates_path = ["_templates"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "venv",
+    ".venv",
+    "**/qt_forms_*.py",
+    "**/main_pyqt5.py",
+]
 
 # -- HTML --------------------------------------------------------------------
-html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+html_theme = "sphinx_rtd_theme"
+html_theme_options = {"collapse_navigation": False, "sticky_navigation": True}
+html_static_path = ["_static"]

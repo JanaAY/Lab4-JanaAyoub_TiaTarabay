@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qt_app module &mdash; School Management (PyQt5) — API</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="models.student module" href="models.student.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            School Management (PyQt5)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="main.html#main.show_course_info"><code class="docutils literal notranslate"><span class="pre">show_course_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models.html#submodules">Submodules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="models.course.html">models.course module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.instructor.html">models.instructor module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.person.html">models.person module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="models.student.html">models.student module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models.html#module-models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">qt_app module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.JSON_PATH"><code class="docutils literal notranslate"><span class="pre">JSON_PATH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.STUDENTS"><code class="docutils literal notranslate"><span class="pre">STUDENTS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.INSTRUCTORS"><code class="docutils literal notranslate"><span class="pre">INSTRUCTORS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.COURSES"><code class="docutils literal notranslate"><span class="pre">COURSES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.text"><code class="docutils literal notranslate"><span class="pre">text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.make_students_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_students_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.clear_student_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_student_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.add_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.update_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.update_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.fill_student_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_student_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.make_instructors_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_instructors_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.clear_instructor_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_instructor_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.add_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.update_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.update_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.fill_instructor_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_instructor_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.make_courses_tab"><code class="docutils literal notranslate"><span class="pre">MainWindow.make_courses_tab()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.clear_course_form"><code class="docutils literal notranslate"><span class="pre">MainWindow.clear_course_form()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.add_course"><code class="docutils literal notranslate"><span class="pre">MainWindow.add_course()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.assign_instructor"><code class="docutils literal notranslate"><span class="pre">MainWindow.assign_instructor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.register_student"><code class="docutils literal notranslate"><span class="pre">MainWindow.register_student()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.fill_course_form_from_row"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_course_form_from_row()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.delete_selected"><code class="docutils literal notranslate"><span class="pre">MainWindow.delete_selected()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.reload_all"><code class="docutils literal notranslate"><span class="pre">MainWindow.reload_all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.fill_tables"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_tables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.fill_pickers"><code class="docutils literal notranslate"><span class="pre">MainWindow.fill_pickers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.save_json"><code class="docutils literal notranslate"><span class="pre">MainWindow.save_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.load_json"><code class="docutils literal notranslate"><span class="pre">MainWindow.load_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.backup_db"><code class="docutils literal notranslate"><span class="pre">MainWindow.backup_db()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.load_into_memory"><code class="docutils literal notranslate"><span class="pre">MainWindow.load_into_memory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qt_app.MainWindow.overwrite_db_from_memory"><code class="docutils literal notranslate"><span class="pre">MainWindow.overwrite_db_from_memory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#qt_app.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">School Management (PyQt5)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">qt_app module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/qt_app.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-qt_app">
+<span id="qt-app-module"></span><h1>qt_app module<a class="headerlink" href="#module-qt_app" title="Link to this heading"></a></h1>
+<p>School Management (PyQt5) application.</p>
+<p>This module provides the PyQt5 GUI for managing students, instructors, and courses.
+It exposes a <a class="reference internal" href="#qt_app.MainWindow" title="qt_app.MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">MainWindow</span></code></a> with three tabs:
+- Students: add/update/delete students and view their registered courses
+- Instructors: add/update/delete instructors and view their assigned courses
+- Courses: add/clear, assign instructor, and register students</p>
+<p>It also includes utilities for saving/loading JSON snapshots and backing up the database.</p>
+<p>The code is documented with Sphinx-style docstrings so it can be included in a full
+project documentation site using Sphinx autodoc.</p>
+<dl class="simple">
+<dt>Usage (CLI):</dt><dd><p>python qt_app.py</p>
+</dd>
+<dt>Typical build integration:</dt><dd><ul class="simple">
+<li><p>Keep application launch under <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> so Sphinx can import
+the module without executing the GUI.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py data">
+<dt class="sig sig-object py" id="qt_app.JSON_PATH">
+<span class="sig-name descname"><span class="pre">JSON_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'school.json'</span></em><a class="headerlink" href="#qt_app.JSON_PATH" title="Link to this definition"></a></dt>
+<dd><p>Default JSON path for save/load operations</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="qt_app.STUDENTS">
+<span class="sig-name descname"><span class="pre">STUDENTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#qt_app.STUDENTS" title="Link to this definition"></a></dt>
+<dd><p>In-memory cache of students (populated by <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MainWindow.reload_all()</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="qt_app.INSTRUCTORS">
+<span class="sig-name descname"><span class="pre">INSTRUCTORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#qt_app.INSTRUCTORS" title="Link to this definition"></a></dt>
+<dd><p>In-memory cache of instructors (populated by <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MainWindow.reload_all()</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="qt_app.COURSES">
+<span class="sig-name descname"><span class="pre">COURSES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#qt_app.COURSES" title="Link to this definition"></a></dt>
+<dd><p>In-memory cache of courses (populated by <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MainWindow.reload_all()</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qt_app.text">
+<span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.text" title="Link to this definition"></a></dt>
+<dd><p>Get the text of a <code class="xref py py-class docutils literal notranslate"><span class="pre">QTableWidgetItem</span></code> safely.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>QTableWidgetItem</em><em> or </em><em>None</em>) – The table item (may be <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The item’s text, or an empty string if item is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qt_app.MainWindow">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QMainWindow</span></code></p>
+<p>Main window for the School Management PyQt5 application.</p>
+<p>Provides tabs for Students, Instructors, and Courses; supports saving/loading
+data to/from JSON, and creating DB backups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tbl_students</strong> (<em>QTableWidget</em>) – Table showing student records with their registered courses</p></li>
+<li><p><strong>tbl_instructors</strong> (<em>QTableWidget</em>) – Table showing instructor records with their assigned courses</p></li>
+<li><p><strong>tbl_courses</strong> (<em>QTableWidget</em>) – Table showing course records with instructor and enrolled students</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.make_students_tab">
+<span class="sig-name descname"><span class="pre">make_students_tab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.make_students_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.make_students_tab" title="Link to this definition"></a></dt>
+<dd><p>Build and return the <strong>Students</strong> tab UI.</p>
+<p>Includes a form (ID, Name, Age, Email), Add/Update/Clear actions,
+and a table with Edit/Delete actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The tab widget for Students management.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>QWidget</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.clear_student_form">
+<span class="sig-name descname"><span class="pre">clear_student_form</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.clear_student_form"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.clear_student_form" title="Link to this definition"></a></dt>
+<dd><p>Clear all student form fields and focus the <strong>ID</strong> field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.add_student">
+<span class="sig-name descname"><span class="pre">add_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.add_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.add_student" title="Link to this definition"></a></dt>
+<dd><p>Validate inputs and add a new student to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If ID missing, age negative, or email invalid.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.add_student()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+<li><p>Clears form via <a class="reference internal" href="#qt_app.MainWindow.clear_student_form" title="qt_app.MainWindow.clear_student_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_student_form()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.update_student">
+<span class="sig-name descname"><span class="pre">update_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.update_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.update_student" title="Link to this definition"></a></dt>
+<dd><p>Validate inputs and update an existing student in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If ID missing, age negative, or email invalid.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.update_student()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+<li><p>Clears form via <a class="reference internal" href="#qt_app.MainWindow.clear_student_form" title="qt_app.MainWindow.clear_student_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_student_form()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.fill_student_form_from_row">
+<span class="sig-name descname"><span class="pre">fill_student_form_from_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.fill_student_form_from_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.fill_student_form_from_row" title="Link to this definition"></a></dt>
+<dd><p>Load the currently selected student row from the table into the form.</p>
+<p>No-op if no row is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.make_instructors_tab">
+<span class="sig-name descname"><span class="pre">make_instructors_tab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.make_instructors_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.make_instructors_tab" title="Link to this definition"></a></dt>
+<dd><p>Build and return the <strong>Instructors</strong> tab UI.</p>
+<p>Includes a form (ID, Name, Age, Email), Add/Update/Clear actions,
+and a table with Edit/Delete actions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The tab widget for Instructors management.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>QWidget</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.clear_instructor_form">
+<span class="sig-name descname"><span class="pre">clear_instructor_form</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.clear_instructor_form"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.clear_instructor_form" title="Link to this definition"></a></dt>
+<dd><p>Clear all instructor form fields and focus the <strong>ID</strong> field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.add_instructor">
+<span class="sig-name descname"><span class="pre">add_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.add_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.add_instructor" title="Link to this definition"></a></dt>
+<dd><p>Validate inputs and add a new instructor to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If ID missing, age negative, or email invalid.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.add_instructor()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+<li><p>Clears form via <a class="reference internal" href="#qt_app.MainWindow.clear_instructor_form" title="qt_app.MainWindow.clear_instructor_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_instructor_form()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.update_instructor">
+<span class="sig-name descname"><span class="pre">update_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.update_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.update_instructor" title="Link to this definition"></a></dt>
+<dd><p>Validate inputs and update an existing instructor in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If ID missing, age negative, or email invalid.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.update_instructor()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+<li><p>Clears form via <a class="reference internal" href="#qt_app.MainWindow.clear_instructor_form" title="qt_app.MainWindow.clear_instructor_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_instructor_form()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.fill_instructor_form_from_row">
+<span class="sig-name descname"><span class="pre">fill_instructor_form_from_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.fill_instructor_form_from_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.fill_instructor_form_from_row" title="Link to this definition"></a></dt>
+<dd><p>Load the currently selected instructor row from the table into the form.</p>
+<p>No-op if no row is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.make_courses_tab">
+<span class="sig-name descname"><span class="pre">make_courses_tab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.make_courses_tab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.make_courses_tab" title="Link to this definition"></a></dt>
+<dd><p>Build and return the <strong>Courses</strong> tab UI.</p>
+<dl class="simple">
+<dt>Includes:</dt><dd><ul class="simple">
+<li><p>Add Course (ID + Name)</p></li>
+<li><p>Assign Instructor (by ID)</p></li>
+<li><p>Register Student (by ID)</p></li>
+<li><p>Courses table with Edit/Delete actions</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The tab widget for Courses management.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>QWidget</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.clear_course_form">
+<span class="sig-name descname"><span class="pre">clear_course_form</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.clear_course_form"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.clear_course_form" title="Link to this definition"></a></dt>
+<dd><p>Clear the course form fields and focus the <strong>Course ID</strong> field.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.add_course">
+<span class="sig-name descname"><span class="pre">add_course</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.add_course"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.add_course" title="Link to this definition"></a></dt>
+<dd><p>Add a new course to the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – Surfaces DB-layer errors (e.g., duplicates).</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.add_course()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+<li><p>Clears form via <a class="reference internal" href="#qt_app.MainWindow.clear_course_form" title="qt_app.MainWindow.clear_course_form"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clear_course_form()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.assign_instructor">
+<span class="sig-name descname"><span class="pre">assign_instructor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.assign_instructor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.assign_instructor" title="Link to this definition"></a></dt>
+<dd><p>Assign the selected instructor to the selected course.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – Surfaces DB-layer errors.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.assign_instructor()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.register_student">
+<span class="sig-name descname"><span class="pre">register_student</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.register_student"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.register_student" title="Link to this definition"></a></dt>
+<dd><p>Register the selected student to the selected course.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>RuntimeError</strong> – Surfaces DB-layer errors.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.register_student()</span></code></p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.fill_course_form_from_row">
+<span class="sig-name descname"><span class="pre">fill_course_form_from_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.fill_course_form_from_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.fill_course_form_from_row" title="Link to this definition"></a></dt>
+<dd><p>Load the currently selected course row into the form fields and set the
+course pickers to that course.</p>
+<p>No-op if no row is selected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.delete_selected">
+<span class="sig-name descname"><span class="pre">delete_selected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.delete_selected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.delete_selected" title="Link to this definition"></a></dt>
+<dd><p>Delete the currently selected row of the given kind.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kind</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;student&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;instructor&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;course&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Calls the appropriate DB delete function</p></li>
+<li><p>Refreshes UI via <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.reload_all">
+<span class="sig-name descname"><span class="pre">reload_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.reload_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.reload_all" title="Link to this definition"></a></dt>
+<dd><p>Reload in-memory lists from the database and refresh UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Side effects<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Updates global <code class="docutils literal notranslate"><span class="pre">STUDENTS</span></code>, <code class="docutils literal notranslate"><span class="pre">INSTRUCTORS</span></code>, <code class="docutils literal notranslate"><span class="pre">COURSES</span></code></p></li>
+<li><p>Calls <a class="reference internal" href="#qt_app.MainWindow.fill_tables" title="qt_app.MainWindow.fill_tables"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_tables()</span></code></a> and <a class="reference internal" href="#qt_app.MainWindow.fill_pickers" title="qt_app.MainWindow.fill_pickers"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fill_pickers()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.fill_tables">
+<span class="sig-name descname"><span class="pre">fill_tables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.fill_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.fill_tables" title="Link to this definition"></a></dt>
+<dd><p>Repopulate the three tables (students, instructors, courses) from the
+global in-memory caches.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.fill_pickers">
+<span class="sig-name descname"><span class="pre">fill_pickers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.fill_pickers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.fill_pickers" title="Link to this definition"></a></dt>
+<dd><p>Repopulate combo boxes used for registrations and assignments so users
+can only pick valid IDs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.save_json">
+<span class="sig-name descname"><span class="pre">save_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.save_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.save_json" title="Link to this definition"></a></dt>
+<dd><p>Save the current in-memory data to a JSON file at <a class="reference internal" href="#qt_app.JSON_PATH" title="qt_app.JSON_PATH"><code class="xref py py-data docutils literal notranslate"><span class="pre">JSON_PATH</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Side effects<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Calls <code class="xref py py-func docutils literal notranslate"><span class="pre">models.data_manager.DataManager.save_to_file()</span></code>
+and shows a message box on success/failure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.load_json">
+<span class="sig-name descname"><span class="pre">load_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.load_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.load_json" title="Link to this definition"></a></dt>
+<dd><p>Load a JSON snapshot from <a class="reference internal" href="#qt_app.JSON_PATH" title="qt_app.JSON_PATH"><code class="xref py py-data docutils literal notranslate"><span class="pre">JSON_PATH</span></code></a>, rebuild in-memory objects,
+overwrite the database accordingly, and refresh the UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Side effects<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Calls <a class="reference internal" href="#qt_app.MainWindow.load_into_memory" title="qt_app.MainWindow.load_into_memory"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_into_memory()</span></code></a></p></li>
+<li><p>Calls <a class="reference internal" href="#qt_app.MainWindow.overwrite_db_from_memory" title="qt_app.MainWindow.overwrite_db_from_memory"><code class="xref py py-meth docutils literal notranslate"><span class="pre">overwrite_db_from_memory()</span></code></a></p></li>
+<li><p>Calls <a class="reference internal" href="#qt_app.MainWindow.reload_all" title="qt_app.MainWindow.reload_all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reload_all()</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.backup_db">
+<span class="sig-name descname"><span class="pre">backup_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.backup_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.backup_db" title="Link to this definition"></a></dt>
+<dd><p>Create a database backup using <code class="xref py py-func docutils literal notranslate"><span class="pre">models.db.backup_db()</span></code> and display the path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.load_into_memory">
+<span class="sig-name descname"><span class="pre">load_into_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.load_into_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.load_into_memory" title="Link to this definition"></a></dt>
+<dd><p>Convert a JSON-like structure into in-memory objects and link relationships.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – Parsed JSON dict containing <code class="docutils literal notranslate"><span class="pre">students</span></code>, <code class="docutils literal notranslate"><span class="pre">instructors</span></code>, <code class="docutils literal notranslate"><span class="pre">courses</span></code>.</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Rebuilds global <code class="docutils literal notranslate"><span class="pre">STUDENTS</span></code>, <code class="docutils literal notranslate"><span class="pre">INSTRUCTORS</span></code>, <code class="docutils literal notranslate"><span class="pre">COURSES</span></code> lists</p></li>
+<li><p>Recreates object relationships (assigned/registered entities)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qt_app.MainWindow.overwrite_db_from_memory">
+<span class="sig-name descname"><span class="pre">overwrite_db_from_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#MainWindow.overwrite_db_from_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.MainWindow.overwrite_db_from_memory" title="Link to this definition"></a></dt>
+<dd><p>Rewrite the database from the current in-memory objects.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ol class="arabic simple">
+<li><p>Clear all DB tables.</p></li>
+<li><p>Insert instructors and their assigned courses.</p></li>
+<li><p>Insert courses and link their instructor IDs.</p></li>
+<li><p>Insert students and their registrations.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Side effects<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mutates the DB and repopulates rows consistently with memory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qt_app.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/qt_app.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qt_app.main" title="Link to this definition"></a></dt>
+<dd><p>Application entry point.</p>
+<p>Ensures DB tables exist, creates a <a class="reference internal" href="#qt_app.MainWindow" title="qt_app.MainWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">MainWindow</span></code></a>, shows it, and
+starts the Qt event loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Process exit code from the Qt app exec loop.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="models.student.html" class="btn btn-neutral float-left" title="models.student module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Tia Tarabay.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
